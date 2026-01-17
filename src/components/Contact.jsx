@@ -53,7 +53,7 @@ const Contact = ({ onHover, onLeave }) => {
         </svg>
       ),
       title: "Visit Us",
-      details: ["123 Digital Avenue", "Tech Hub, Mumbai 400001"],
+      details: ["10/10 4th Floor, Sabar sahi ", "Lane 1, Rasulgarh, Bhubaneswar 751010"],
     },
     {
       icon: (
@@ -103,9 +103,9 @@ const Contact = ({ onHover, onLeave }) => {
     >
       {/* Background */}
       <div className="absolute inset-0">
-        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-neon-green/50 to-transparent" />
+        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-neon-blue/50 to-transparent" />
         <motion.div
-          className="absolute top-1/3 right-0 w-[600px] h-[600px] rounded-full bg-neon-blue/5 blur-3xl"
+          className="absolute top-1/3 right-0 w-[600px] h-[600px] rounded-full bg-neon-orange/5 blur-3xl"
           animate={{ x: [0, -50, 0], y: [0, 30, 0] }}
           transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
         />
@@ -120,7 +120,7 @@ const Contact = ({ onHover, onLeave }) => {
           className="text-center mb-12 lg:mb-16"
         >
           <motion.span
-            className="inline-block px-4 py-2 rounded-full glass text-neon-green text-sm mb-6"
+            className="inline-block px-4 py-2 rounded-full glass text-neon-blue text-sm mb-6"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={isInView ? { opacity: 1, scale: 1 } : {}}
           >
@@ -159,7 +159,7 @@ const Contact = ({ onHover, onLeave }) => {
                     onChange={(e) =>
                       setFormData({ ...formData, name: e.target.value })
                     }
-                    className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:border-neon-green focus:outline-none transition-colors"
+                    className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:border-neon-blue focus:outline-none transition-colors"
                     placeholder="John Doe"
                     required
                     onFocus={onHover}
@@ -176,7 +176,7 @@ const Contact = ({ onHover, onLeave }) => {
                     onChange={(e) =>
                       setFormData({ ...formData, email: e.target.value })
                     }
-                    className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:border-neon-green focus:outline-none transition-colors"
+                    className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:border-neon-blue focus:outline-none transition-colors"
                     placeholder="john@company.com"
                     required
                     onFocus={onHover}
@@ -196,7 +196,7 @@ const Contact = ({ onHover, onLeave }) => {
                     onChange={(e) =>
                       setFormData({ ...formData, company: e.target.value })
                     }
-                    className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:border-neon-green focus:outline-none transition-colors"
+                    className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:border-neon-blue focus:outline-none transition-colors"
                     placeholder="Company Inc."
                     onFocus={onHover}
                     onBlur={onLeave}
@@ -211,7 +211,7 @@ const Contact = ({ onHover, onLeave }) => {
                     onChange={(e) =>
                       setFormData({ ...formData, budget: e.target.value })
                     }
-                    className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white focus:border-neon-green focus:outline-none transition-colors"
+                    className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white focus:border-neon-blue focus:outline-none transition-colors"
                     onFocus={onHover}
                     onBlur={onLeave}
                   >
@@ -244,7 +244,7 @@ const Contact = ({ onHover, onLeave }) => {
                     setFormData({ ...formData, message: e.target.value })
                   }
                   rows={5}
-                  className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:border-neon-green focus:outline-none transition-colors resize-none"
+                  className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:border-neon-blue focus:outline-none transition-colors resize-none"
                   placeholder="Tell us about your project and goals..."
                   required
                   onFocus={onHover}
@@ -316,8 +316,8 @@ const Contact = ({ onHover, onLeave }) => {
                 onMouseEnter={onHover}
                 onMouseLeave={onLeave}
               >
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-r from-neon-green to-neon-blue flex items-center justify-center flex-shrink-0">
-                  <span className="text-dark-950">{info.icon}</span>
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-r from-neon-orange to-neon-blue flex items-center justify-center flex-shrink-0">
+                  <span className="text-white">{info.icon}</span>
                 </div>
                 <div>
                   <h4 className="text-white font-semibold mb-1">
@@ -353,7 +353,7 @@ const Contact = ({ onHover, onLeave }) => {
                     href={`https://${social}.com`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-gray-400 hover:text-neon-green hover:bg-neon-green/10 transition-all"
+                    className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-gray-400 hover:text-neon-blue hover:bg-neon-blue/10 transition-all"
                     whileHover={{ scale: 1.1, y: -2 }}
                     onMouseEnter={onHover}
                     onMouseLeave={onLeave}
@@ -373,9 +373,9 @@ const Contact = ({ onHover, onLeave }) => {
               transition={{ delay: 0.9 }}
               className="relative rounded-2xl overflow-hidden"
             >
-              <div className="absolute inset-0 bg-gradient-to-r from-neon-green via-neon-blue to-neon-purple opacity-90" />
+              <div className="absolute inset-0 bg-gradient-to-r from-neon-orange via-neon-blue to-neon-green opacity-90" />
               <div className="relative p-6 text-center">
-                <h4 className="text-dark-950 font-bold text-xl mb-2">
+                <h4 className="text-white font-bold text-xl mb-2">
                   Want a Free Consultation?
                 </h4>
                 <p className="text-dark-950/80 text-sm mb-4">

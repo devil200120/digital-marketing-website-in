@@ -37,8 +37,8 @@ const Navbar = ({ onHover, onLeave }) => {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          isScrolled ? "glass-dark py-4" : "py-6"
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-white ${
+          isScrolled ? "glass-dark lg:py-4" : "lg:py-6"
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
@@ -51,10 +51,11 @@ const Navbar = ({ onHover, onLeave }) => {
             onMouseLeave={onLeave}
             whileHover={{ scale: 1.02 }}
           >
-            <span className="text-xl md:text-2xl font-bold">
+            {/* <span className="text-xl md:text-2xl font-bold">
               <span className="text-neon-blue">Info</span>
               <span className="text-neon-green">tattva</span>
-            </span>
+            </span> */}
+            <img src="/logo-rmbg.png" alt="InfoTattva Logo" className="w-20 lg:scale-150" />
           </motion.a>
 
           {/* Desktop Navigation */}
@@ -64,7 +65,7 @@ const Navbar = ({ onHover, onLeave }) => {
                 key={link.name}
                 href={link.href}
                 onClick={(e) => scrollToSection(e, link.href)}
-                className="relative text-gray-300 hover:text-white transition-colors animated-underline"
+                className="relative text-black text-lg hover:text-white transition-colors animated-underline"
                 onMouseEnter={onHover}
                 onMouseLeave={onLeave}
                 initial={{ opacity: 0, y: -20 }}
@@ -96,10 +97,10 @@ const Navbar = ({ onHover, onLeave }) => {
             {isMobileMenuOpen ? (
               // X Icon when open
               <svg
-                className="w-6 h-6 text-white"
+                className="w-7 h-7 text-black"
                 fill="none"
                 stroke="currentColor"
-                viewBox="0 0 24 24"
+                viewBox="0 0 20 20"
               >
                 <path
                   strokeLinecap="round"
@@ -111,10 +112,10 @@ const Navbar = ({ onHover, onLeave }) => {
             ) : (
               // Hamburger Icon when closed
               <svg
-                className="w-6 h-6 text-white"
+                className="w-8 h-8 text-black"
                 fill="none"
                 stroke="currentColor"
-                viewBox="0 0 24 24"
+                viewBox="0 0 20 20"
               >
                 <path
                   strokeLinecap="round"
