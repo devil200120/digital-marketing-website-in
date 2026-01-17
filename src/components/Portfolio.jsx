@@ -1,5 +1,5 @@
 import { useState, useRef } from "react";
-import { motion, useInView, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 const projects = [
   {
@@ -83,7 +83,6 @@ const Portfolio = ({ onHover, onLeave }) => {
   const [activeCategory, setActiveCategory] = useState("All");
   const [hoveredProject, setHoveredProject] = useState(null);
   const containerRef = useRef(null);
-  const isInView = useInView(containerRef, { once: true, margin: "-100px" });
 
   const filteredProjects =
     activeCategory === "All"
@@ -104,15 +103,18 @@ const Portfolio = ({ onHover, onLeave }) => {
       <div className="max-w-7xl mx-auto px-6">
         {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
           className="text-center mb-12 lg:mb-16"
         >
           <motion.span
             className="inline-block px-4 py-2 rounded-full glass text-neon-green text-sm mb-6"
             initial={{ opacity: 0, scale: 0.8 }}
-            animate={isInView ? { opacity: 1, scale: 1 } : {}}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
           >
             Our Portfolio
           </motion.span>
@@ -130,8 +132,9 @@ const Portfolio = ({ onHover, onLeave }) => {
         {/* Category Filter */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 0.2 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.2 }}
           className="flex flex-wrap justify-center gap-3 mb-12"
         >
           {categories.map((category) => (
@@ -163,10 +166,12 @@ const Portfolio = ({ onHover, onLeave }) => {
               <motion.div
                 key={project.id}
                 layout
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
+                initial={{ opacity: 0, y: 60 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
                 exit={{ opacity: 0, scale: 0.8 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
+                transition={{ duration: 0.6, delay: index * 0.15, ease: [0.25, 0.46, 0.45, 0.94] }}
+                whileHover={{ y: -10, transition: { duration: 0.3 } }}
                 className="group relative"
                 onMouseEnter={() => {
                   setHoveredProject(project.id);
@@ -288,8 +293,9 @@ const Portfolio = ({ onHover, onLeave }) => {
         {/* CTA */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 0.6 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.3 }}
           className="text-center mt-16"
         >
           <motion.button

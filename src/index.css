@@ -128,11 +128,10 @@ body {
 }
 
 .hover-card {
-  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  transition: box-shadow 0.5s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 .hover-card:hover {
-  transform: translateY(-10px) scale(1.02);
   box-shadow: 0 20px 40px rgba(0, 255, 136, 0.2);
 }
 

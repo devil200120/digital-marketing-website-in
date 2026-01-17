@@ -1,7 +1,6 @@
 import { useRef, useState } from "react";
 import {
   motion,
-  useInView,
   useScroll,
   useTransform,
   AnimatePresence,
@@ -9,7 +8,6 @@ import {
 
 const About = ({ onHover, onLeave }) => {
   const containerRef = useRef(null);
-  const isInView = useInView(containerRef, { once: true, margin: "-100px" });
   const [activeTab, setActiveTab] = useState("mission");
 
   const { scrollYProgress } = useScroll({
@@ -237,15 +235,18 @@ const About = ({ onHover, onLeave }) => {
       <div className="relative max-w-7xl mx-auto px-6">
         {/* Section Header */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
           className="text-center mb-12 lg:mb-16"
         >
           <motion.span
             className="inline-block px-4 py-2 rounded-full glass text-neon-green text-sm font-medium mb-6"
             initial={{ opacity: 0, scale: 0.8 }}
-            animate={isInView ? { opacity: 1, scale: 1 } : {}}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
           >
             About Infotattva
           </motion.span>
@@ -265,16 +266,18 @@ const About = ({ onHover, onLeave }) => {
         {/* Stats Row */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.8, delay: 0.2 }}
           className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 mb-12 lg:mb-16"
         >
           {stats.map((stat, index) => (
             <motion.div
               key={stat.label}
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.3 + index * 0.1 }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.1 + index * 0.1 }}
               className="relative group"
               onMouseEnter={onHover}
               onMouseLeave={onLeave}
@@ -302,8 +305,9 @@ const About = ({ onHover, onLeave }) => {
         {/* Mission/Vision/Values Tabs */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.3 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
           className="mb-12 lg:mb-16"
         >
           <div className="glass rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 lg:p-12">
@@ -391,8 +395,9 @@ const About = ({ onHover, onLeave }) => {
         {/* Our Expertise Section */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.4 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
         >
           <div className="text-center mb-12">
             <h3 className="text-2xl lg:text-3xl font-bold text-white mb-4">
@@ -408,9 +413,11 @@ const About = ({ onHover, onLeave }) => {
             {expertise.map((item, index) => (
               <motion.div
                 key={item.title}
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ delay: 0.5 + index * 0.1 }}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                whileHover={{ y: -8, transition: { duration: 0.3 } }}
                 className="group glass rounded-2xl p-6 hover:border-neon-green/30 transition-all duration-300"
                 onMouseEnter={onHover}
                 onMouseLeave={onLeave}
@@ -430,8 +437,9 @@ const About = ({ onHover, onLeave }) => {
         {/* Why Choose Us CTA */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.6 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
           className="mt-12 lg:mt-16"
         >
           <div className="relative rounded-3xl overflow-hidden">

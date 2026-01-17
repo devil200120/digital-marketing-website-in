@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 
 const services = [
   {
@@ -164,29 +164,6 @@ const services = [
 
 const Services = ({ onHover, onLeave }) => {
   const containerRef = useRef(null);
-  const isInView = useInView(containerRef, { once: true, margin: "-100px" });
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-      },
-    },
-  };
-
-  const cardVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: [0.23, 1, 0.32, 1],
-      },
-    },
-  };
 
   return (
     <section id="services" className="relative py-20 lg:py-28 overflow-hidden">
@@ -199,16 +176,18 @@ const Services = ({ onHover, onLeave }) => {
       <div className="max-w-7xl mx-auto px-6" ref={containerRef}>
         {/* Section Header */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
           className="text-center mb-12 lg:mb-16"
         >
           <motion.span
             className="inline-block px-4 py-2 rounded-full glass text-neon-green text-sm mb-6"
             initial={{ opacity: 0, scale: 0.8 }}
-            animate={isInView ? { opacity: 1, scale: 1 } : {}}
-            transition={{ delay: 0.2 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
           >
             Our Services
           </motion.span>
@@ -224,21 +203,24 @@ const Services = ({ onHover, onLeave }) => {
         </motion.div>
 
         {/* Services Grid */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-        >
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {services.map((service, index) => (
             <motion.div
               key={service.title}
-              variants={cardVariants}
+              initial={{ opacity: 0, y: 60 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ 
+                duration: 0.7, 
+                delay: index * 0.15,
+                ease: [0.25, 0.46, 0.45, 0.94]
+              }}
+              whileHover={{ y: -10, scale: 1.02, transition: { duration: 0.3 } }}
               className="group relative"
               onMouseEnter={onHover}
               onMouseLeave={onLeave}
             >
-              <div className="relative h-full p-5 sm:p-6 md:p-8 rounded-2xl md:rounded-3xl glass hover-card overflow-hidden">
+              <div className="relative h-full p-5 sm:p-6 md:p-8 rounded-2xl md:rounded-3xl glass overflow-hidden transition-shadow duration-300 hover:shadow-[0_20px_40px_rgba(0,255,136,0.2)]">
                 {/* Gradient Overlay on Hover */}
                 <div
                   className={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-0 group-hover:opacity-5 transition-opacity duration-500`}
@@ -307,7 +289,7 @@ const Services = ({ onHover, onLeave }) => {
               </div>
             </motion.div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

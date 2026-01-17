@@ -1,5 +1,5 @@
-import { useRef, useState, useEffect } from "react";
-import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
+import { motion } from "framer-motion";
 
 const testimonials = [
   {
@@ -64,11 +64,17 @@ const testimonials = [
   },
 ];
 
-const TestimonialCard = ({ testimonial, index, isInView }) => (
+const TestimonialCard = ({ testimonial, index }) => (
   <motion.div
-    initial={{ opacity: 0, y: 30 }}
-    animate={isInView ? { opacity: 1, y: 0 } : {}}
-    transition={{ duration: 0.5, delay: index * 0.1 }}
+    initial={{ opacity: 0, y: 50, scale: 0.9 }}
+    whileInView={{ opacity: 1, y: 0, scale: 1 }}
+    viewport={{ once: true, margin: "-50px" }}
+    transition={{ 
+      duration: 0.6, 
+      delay: index * 0.1,
+      ease: [0.25, 0.46, 0.45, 0.94]
+    }}
+    whileHover={{ y: -8, transition: { duration: 0.3 } }}
     className="group"
   >
     <div className="h-full p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-neon-green/30 transition-all duration-300 hover:bg-white/[0.07]">
@@ -120,10 +126,10 @@ const TestimonialCard = ({ testimonial, index, isInView }) => (
 
 const Testimonials = () => {
   const containerRef = useRef(null);
-  const isInView = useInView(containerRef, { once: true, margin: "-100px" });
 
   return (
     <section
+      id="testimonials"
       className="relative py-20 lg:py-28 overflow-hidden"
       ref={containerRef}
     >
@@ -138,15 +144,18 @@ const Testimonials = () => {
       <div className="relative max-w-7xl mx-auto px-6">
         {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
           className="text-center mb-12"
         >
           <motion.span
             className="inline-block px-4 py-2 rounded-full glass text-neon-green text-sm font-medium mb-4"
             initial={{ opacity: 0, scale: 0.8 }}
-            animate={isInView ? { opacity: 1, scale: 1 } : {}}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
           >
             Testimonials
           </motion.span>
@@ -166,16 +175,16 @@ const Testimonials = () => {
               key={testimonial.id}
               testimonial={testimonial}
               index={index}
-              isInView={isInView}
             />
           ))}
         </div>
 
         {/* Trust Indicators */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 0.6 }}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.6, delay: 0.3 }}
           className="mt-12 pt-8 border-t border-white/10"
         >
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-12">
