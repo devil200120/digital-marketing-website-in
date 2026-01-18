@@ -1,9 +1,8 @@
 import { useRef, useState } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 
 const Contact = ({ onHover, onLeave }) => {
   const containerRef = useRef(null);
-  const isInView = useInView(containerRef, { once: true, margin: "-100px" });
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -111,18 +110,21 @@ const Contact = ({ onHover, onLeave }) => {
         />
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-6">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6">
         {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-12 lg:mb-16"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="text-center mb-10 lg:mb-16"
         >
           <motion.span
-            className="inline-block px-4 py-2 rounded-full glass text-neon-blue text-sm mb-6"
+            className="inline-block px-4 py-2 rounded-full glass text-neon-blue text-sm mb-4 sm:mb-6"
             initial={{ opacity: 0, scale: 0.8 }}
-            animate={isInView ? { opacity: 1, scale: 1 } : {}}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
           >
             Contact Us
           </motion.span>
@@ -137,20 +139,21 @@ const Contact = ({ onHover, onLeave }) => {
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-start">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
           {/* Contact Form */}
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             <form
               onSubmit={handleSubmit}
-              className="glass rounded-2xl sm:rounded-3xl p-5 sm:p-6 md:p-8"
+              className="glass rounded-2xl p-4 sm:p-6 md:p-8"
             >
-              <div className="grid md:grid-cols-2 gap-6 mb-6">
+              <div className="grid sm:grid-cols-2 gap-4 sm:gap-6 mb-4 sm:mb-6">
                 <div>
-                  <label className="block text-sm text-gray-400 mb-2">
+                  <label className="block text-xs sm:text-sm text-gray-400 mb-2">
                     Your Name
                   </label>
                   <input
@@ -159,7 +162,7 @@ const Contact = ({ onHover, onLeave }) => {
                     onChange={(e) =>
                       setFormData({ ...formData, name: e.target.value })
                     }
-                    className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:border-neon-blue focus:outline-none transition-colors"
+                    className="w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg sm:rounded-xl bg-white/5 border border-white/10 text-white text-sm sm:text-base placeholder-gray-500 focus:border-neon-blue focus:outline-none transition-colors"
                     placeholder="John Doe"
                     required
                     onFocus={onHover}
@@ -167,7 +170,7 @@ const Contact = ({ onHover, onLeave }) => {
                   />
                 </div>
                 <div>
-                  <label className="block text-sm text-gray-400 mb-2">
+                  <label className="block text-xs sm:text-sm text-gray-400 mb-2">
                     Email Address
                   </label>
                   <input
@@ -176,7 +179,7 @@ const Contact = ({ onHover, onLeave }) => {
                     onChange={(e) =>
                       setFormData({ ...formData, email: e.target.value })
                     }
-                    className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:border-neon-blue focus:outline-none transition-colors"
+                    className="w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg sm:rounded-xl bg-white/5 border border-white/10 text-white text-sm sm:text-base placeholder-gray-500 focus:border-neon-blue focus:outline-none transition-colors"
                     placeholder="john@company.com"
                     required
                     onFocus={onHover}
@@ -185,9 +188,9 @@ const Contact = ({ onHover, onLeave }) => {
                 </div>
               </div>
 
-              <div className="grid md:grid-cols-2 gap-6 mb-6">
+              <div className="grid sm:grid-cols-2 gap-4 sm:gap-6 mb-4 sm:mb-6">
                 <div>
-                  <label className="block text-sm text-gray-400 mb-2">
+                  <label className="block text-xs sm:text-sm text-gray-400 mb-2">
                     Company
                   </label>
                   <input
@@ -196,14 +199,14 @@ const Contact = ({ onHover, onLeave }) => {
                     onChange={(e) =>
                       setFormData({ ...formData, company: e.target.value })
                     }
-                    className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:border-neon-blue focus:outline-none transition-colors"
+                    className="w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg sm:rounded-xl bg-white/5 border border-white/10 text-white text-sm sm:text-base placeholder-gray-500 focus:border-neon-blue focus:outline-none transition-colors"
                     placeholder="Company Inc."
                     onFocus={onHover}
                     onBlur={onLeave}
                   />
                 </div>
                 <div>
-                  <label className="block text-sm text-gray-400 mb-2">
+                  <label className="block text-xs sm:text-sm text-gray-400 mb-2">
                     Budget Range
                   </label>
                   <select
@@ -211,7 +214,7 @@ const Contact = ({ onHover, onLeave }) => {
                     onChange={(e) =>
                       setFormData({ ...formData, budget: e.target.value })
                     }
-                    className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white focus:border-neon-blue focus:outline-none transition-colors"
+                    className="w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg sm:rounded-xl bg-white/5 border border-white/10 text-white text-sm sm:text-base focus:border-neon-blue focus:outline-none transition-colors"
                     onFocus={onHover}
                     onBlur={onLeave}
                   >
@@ -234,8 +237,8 @@ const Contact = ({ onHover, onLeave }) => {
                 </div>
               </div>
 
-              <div className="mb-6">
-                <label className="block text-sm text-gray-400 mb-2">
+              <div className="mb-4 sm:mb-6">
+                <label className="block text-xs sm:text-sm text-gray-400 mb-2">
                   Your Message
                 </label>
                 <textarea
@@ -243,8 +246,8 @@ const Contact = ({ onHover, onLeave }) => {
                   onChange={(e) =>
                     setFormData({ ...formData, message: e.target.value })
                   }
-                  rows={5}
-                  className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:border-neon-blue focus:outline-none transition-colors resize-none"
+                  rows={4}
+                  className="w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg sm:rounded-xl bg-white/5 border border-white/10 text-white text-sm sm:text-base placeholder-gray-500 focus:border-neon-blue focus:outline-none transition-colors resize-none"
                   placeholder="Tell us about your project and goals..."
                   required
                   onFocus={onHover}
@@ -254,7 +257,7 @@ const Contact = ({ onHover, onLeave }) => {
 
               <motion.button
                 type="submit"
-                className="w-full btn-primary relative overflow-hidden"
+                className="w-full px-6 py-3 sm:py-4 rounded-lg sm:rounded-xl font-semibold text-sm sm:text-base bg-gradient-to-r from-neon-green to-neon-blue text-dark-950 relative overflow-hidden"
                 disabled={isSubmitting}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
@@ -300,31 +303,33 @@ const Contact = ({ onHover, onLeave }) => {
 
           {/* Contact Info & Map */}
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="space-y-8"
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="space-y-4 sm:space-y-6"
           >
             {/* Contact Cards */}
             {contactInfo.map((info, index) => (
               <motion.div
                 key={info.title}
                 initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ delay: 0.5 + index * 0.1 }}
-                className="glass rounded-2xl p-6 flex items-start gap-4 hover-card"
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="glass rounded-xl sm:rounded-2xl p-4 sm:p-6 flex items-start gap-3 sm:gap-4"
                 onMouseEnter={onHover}
                 onMouseLeave={onLeave}
               >
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-r from-neon-orange to-neon-blue flex items-center justify-center flex-shrink-0">
-                  <span className="text-white">{info.icon}</span>
+                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-gradient-to-r from-neon-orange to-neon-blue flex items-center justify-center flex-shrink-0">
+                  <span className="text-white [&>svg]:w-5 [&>svg]:h-5 sm:[&>svg]:w-6 sm:[&>svg]:h-6">{info.icon}</span>
                 </div>
-                <div>
-                  <h4 className="text-white font-semibold mb-1">
+                <div className="min-w-0">
+                  <h4 className="text-white font-semibold text-sm sm:text-base mb-1">
                     {info.title}
                   </h4>
                   {info.details.map((detail, i) => (
-                    <p key={i} className="text-gray-400 text-sm">
+                    <p key={i} className="text-gray-400 text-xs sm:text-sm break-all sm:break-normal">
                       {detail}
                     </p>
                   ))}
@@ -335,12 +340,13 @@ const Contact = ({ onHover, onLeave }) => {
             {/* Social Links */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.8 }}
-              className="glass rounded-2xl p-6"
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="glass rounded-xl sm:rounded-2xl p-4 sm:p-6"
             >
-              <h4 className="text-white font-semibold mb-4">Follow Us</h4>
-              <div className="flex gap-4">
+              <h4 className="text-white font-semibold text-sm sm:text-base mb-3 sm:mb-4">Follow Us</h4>
+              <div className="flex gap-3 sm:gap-4">
                 {[
                   "facebook",
                   "twitter",
@@ -353,7 +359,7 @@ const Contact = ({ onHover, onLeave }) => {
                     href={`https://${social}.com`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-gray-400 hover:text-neon-blue hover:bg-neon-blue/10 transition-all"
+                    className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-white/5 flex items-center justify-center text-gray-400 hover:text-neon-blue hover:bg-neon-blue/10 transition-all"
                     whileHover={{ scale: 1.1, y: -2 }}
                     onMouseEnter={onHover}
                     onMouseLeave={onLeave}
@@ -369,20 +375,21 @@ const Contact = ({ onHover, onLeave }) => {
             {/* CTA Card */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.9 }}
-              className="relative rounded-2xl overflow-hidden"
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              className="relative rounded-xl sm:rounded-2xl overflow-hidden"
             >
               <div className="absolute inset-0 bg-gradient-to-r from-neon-orange via-neon-blue to-neon-green opacity-90" />
-              <div className="relative p-6 text-center">
-                <h4 className="text-white font-bold text-xl mb-2">
+              <div className="relative p-4 sm:p-6 text-center">
+                <h4 className="text-white font-bold text-lg sm:text-xl mb-2">
                   Want a Free Consultation?
                 </h4>
-                <p className="text-dark-950/80 text-sm mb-4">
+                <p className="text-white/80 text-xs sm:text-sm mb-3 sm:mb-4">
                   Schedule a 30-minute call with our experts
                 </p>
                 <motion.button
-                  className="px-6 py-3 rounded-xl bg-dark-950 text-white font-semibold hover:bg-dark-900 transition-colors"
+                  className="px-5 py-2.5 sm:px-6 sm:py-3 rounded-lg sm:rounded-xl bg-dark-950 text-white text-sm sm:text-base font-semibold hover:bg-dark-900 transition-colors"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   onMouseEnter={onHover}
