@@ -207,10 +207,63 @@ const About = ({ onHover, onLeave }) => {
   ];
 
   const certifications = [
-    { name: "Google Partner", icon: "🏆" },
-    { name: "Meta Business Partner", icon: "📱" },
-    { name: "HubSpot Certified", icon: "🎯" },
-    { name: "SEMrush Certified", icon: "📊" },
+    { 
+      name: "Google Partner", 
+      icon: (
+        <svg className="w-8 h-8 sm:w-10 sm:h-10" viewBox="0 0 48 48" fill="none">
+          <path d="M24 4L6 14v20l18 10 18-10V14L24 4z" fill="#FFC107"/>
+          <path d="M24 8l-14 8v16l14 8 14-8V16l-14-8z" fill="#FFD54F"/>
+          <path d="M24 12l-10 6v12l10 6 10-6V18l-10-6z" fill="#FFECB3"/>
+          <circle cx="24" cy="24" r="6" fill="#FF6F00"/>
+        </svg>
+      )
+    },
+    { 
+      name: "Meta Business Partner", 
+      icon: (
+        <svg className="w-8 h-8 sm:w-10 sm:h-10" viewBox="0 0 48 48" fill="none">
+          <rect x="8" y="8" width="32" height="32" rx="4" fill="#1877F2"/>
+          <g fill="#fff">
+            <rect x="12" y="12" width="6" height="6" rx="1"/>
+            <rect x="21" y="12" width="6" height="6" rx="1"/>
+            <rect x="30" y="12" width="6" height="6" rx="1"/>
+            <rect x="12" y="21" width="6" height="6" rx="1"/>
+            <rect x="21" y="21" width="6" height="6" rx="1" fill="#FF6B6B"/>
+            <rect x="30" y="21" width="6" height="6" rx="1" fill="#4ECDC4"/>
+            <rect x="12" y="30" width="6" height="6" rx="1" fill="#FFE66D"/>
+            <rect x="21" y="30" width="6" height="6" rx="1"/>
+            <rect x="30" y="30" width="6" height="6" rx="1"/>
+          </g>
+        </svg>
+      )
+    },
+    { 
+      name: "HubSpot Certified", 
+      icon: (
+        <svg className="w-8 h-8 sm:w-10 sm:h-10" viewBox="0 0 48 48" fill="none">
+          <circle cx="24" cy="24" r="20" fill="#FF7A59" opacity="0.2"/>
+          <circle cx="24" cy="24" r="14" fill="#FF7A59"/>
+          <circle cx="24" cy="20" r="4" fill="#fff"/>
+          <circle cx="18" cy="28" r="2" fill="#fff"/>
+          <circle cx="30" cy="28" r="2" fill="#fff"/>
+          <path d="M20 32a4 4 0 008 0" stroke="#fff" strokeWidth="2" fill="none"/>
+        </svg>
+      )
+    },
+    { 
+      name: "SEMrush Certified", 
+      icon: (
+        <svg className="w-8 h-8 sm:w-10 sm:h-10" viewBox="0 0 48 48" fill="none">
+          <rect x="6" y="6" width="36" height="36" rx="4" fill="#FF622D" opacity="0.2"/>
+          <rect x="10" y="28" width="6" height="12" rx="1" fill="#FF622D"/>
+          <rect x="21" y="20" width="6" height="20" rx="1" fill="#FF622D"/>
+          <rect x="32" y="12" width="6" height="28" rx="1" fill="#FF622D"/>
+          <circle cx="13" cy="22" r="3" fill="#4ECDC4"/>
+          <circle cx="24" cy="14" r="3" fill="#4ECDC4"/>
+          <circle cx="35" cy="8" r="3" fill="#4ECDC4"/>
+        </svg>
+      )
+    },
   ];
 
   return (
@@ -366,20 +419,22 @@ const About = ({ onHover, onLeave }) => {
                 </div>
                 <div className="relative">
                   <div className="absolute inset-0 bg-gradient-to-r from-neon-green/20 via-neon-blue/20 to-neon-purple/20 rounded-2xl blur-2xl" />
-                  <div className="relative bg-white/5 rounded-2xl p-8 border border-white/10">
-                    <div className="grid grid-cols-2 gap-4">
+                  <div className="relative bg-white/5 rounded-2xl p-4 sm:p-6 md:p-8 border border-white/10">
+                    <div className="grid grid-cols-2 gap-3 sm:gap-4">
                       {certifications.map((cert, index) => (
                         <motion.div
                           key={cert.name}
                           initial={{ opacity: 0, scale: 0.8 }}
                           animate={{ opacity: 1, scale: 1 }}
                           transition={{ delay: 0.2 + index * 0.1 }}
-                          className="flex items-center gap-3 p-3 rounded-xl bg-white/5 hover:bg-white/10 transition-colors"
+                          className="flex flex-col items-center justify-center gap-2 sm:gap-3 p-3 sm:p-4 md:p-5 rounded-xl bg-dark-900/60 hover:bg-dark-800/80 transition-all duration-300 border border-white/5 hover:border-white/20"
                           onMouseEnter={onHover}
                           onMouseLeave={onLeave}
                         >
-                          <span className="text-2xl">{cert.icon}</span>
-                          <span className="text-sm text-gray-300">
+                          <div className="flex-shrink-0">
+                            {cert.icon}
+                          </div>
+                          <span className="text-xs sm:text-sm text-gray-300 text-center font-medium leading-tight">
                             {cert.name}
                           </span>
                         </motion.div>

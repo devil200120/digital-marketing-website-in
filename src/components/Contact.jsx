@@ -52,7 +52,10 @@ const Contact = ({ onHover, onLeave }) => {
         </svg>
       ),
       title: "Visit Us",
-      details: ["10/10 4th Floor, Sabar sahi ", "Lane 1, Rasulgarh, Bhubaneswar 751010"],
+      details: [
+        "10/10 4th Floor, Sabar sahi ",
+        "Lane 1, Rasulgarh, Bhubaneswar 751010",
+      ],
     },
     {
       icon: (
@@ -322,14 +325,19 @@ const Contact = ({ onHover, onLeave }) => {
                 onMouseLeave={onLeave}
               >
                 <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-gradient-to-r from-neon-orange to-neon-blue flex items-center justify-center flex-shrink-0">
-                  <span className="text-white [&>svg]:w-5 [&>svg]:h-5 sm:[&>svg]:w-6 sm:[&>svg]:h-6">{info.icon}</span>
+                  <span className="text-white [&>svg]:w-5 [&>svg]:h-5 sm:[&>svg]:w-6 sm:[&>svg]:h-6">
+                    {info.icon}
+                  </span>
                 </div>
                 <div className="min-w-0">
                   <h4 className="text-white font-semibold text-sm sm:text-base mb-1">
                     {info.title}
                   </h4>
                   {info.details.map((detail, i) => (
-                    <p key={i} className="text-gray-400 text-xs sm:text-sm break-all sm:break-normal">
+                    <p
+                      key={i}
+                      className="text-gray-400 text-xs sm:text-sm break-all sm:break-normal"
+                    >
                       {detail}
                     </p>
                   ))}
@@ -345,7 +353,9 @@ const Contact = ({ onHover, onLeave }) => {
               transition={{ duration: 0.5, delay: 0.3 }}
               className="glass rounded-xl sm:rounded-2xl p-4 sm:p-6"
             >
-              <h4 className="text-white font-semibold text-sm sm:text-base mb-3 sm:mb-4">Follow Us</h4>
+              <h4 className="text-white font-semibold text-sm sm:text-base mb-3 sm:mb-4">
+                Follow Us
+              </h4>
               <div className="flex gap-3 sm:gap-4">
                 {[
                   "facebook",

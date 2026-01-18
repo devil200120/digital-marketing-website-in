@@ -1,5 +1,5 @@
 import { useRef, useEffect, useState } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 
 const stats = [
   { value: 500, suffix: "+", label: "Projects Completed", icon: "📦" },
@@ -42,11 +42,11 @@ const AnimatedCounter = ({ value, suffix, inView }) => {
 
 const Stats = () => {
   const containerRef = useRef(null);
-  const isInView = useInView(containerRef, { once: true, margin: "-100px" });
+  const [isInView, setIsInView] = useState(false);
 
   return (
     <section
-      className="relative py-20 lg:py-28 overflow-hidden"
+      className="relative py-16 sm:py-20 lg:py-28 overflow-hidden"
       ref={containerRef}
     >
       {/* Animated Background */}
@@ -81,30 +81,33 @@ const Stats = () => {
         transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
       />
 
-      <div className="relative max-w-7xl mx-auto px-6">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6">
         {/* Section Title */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          onViewportEnter={() => setIsInView(true)}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="text-center mb-10 sm:mb-16"
         >
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-3 md:mb-4">
+          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-2 sm:mb-4">
             Numbers That <span className="gradient-text">Speak</span> For Us
           </h2>
-          <p className="text-gray-400 text-sm sm:text-base max-w-xl mx-auto px-2">
+          <p className="text-gray-400 text-xs sm:text-sm md:text-base max-w-xl mx-auto px-2">
             Our track record of success is reflected in the numbers that matter
             most
           </p>
         </motion.div>
 
         {/* Stats Grid */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6">
           {stats.map((stat, index) => (
             <motion.div
               key={stat.label}
-              initial={{ opacity: 0, y: 50, scale: 0.9 }}
-              animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
               transition={{
                 duration: 0.6,
                 delay: index * 0.1,
@@ -112,14 +115,14 @@ const Stats = () => {
               }}
               className="group relative"
             >
-              <div className="relative p-4 sm:p-6 md:p-8 rounded-2xl md:rounded-3xl glass text-center overflow-hidden">
+              <div className="relative p-3 sm:p-5 md:p-8 rounded-xl sm:rounded-2xl md:rounded-3xl glass text-center overflow-hidden">
                 {/* Background Glow */}
                 <div className="absolute inset-0 bg-gradient-to-br from-neon-green/5 to-neon-purple/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
                 {/* Icon */}
                 <motion.div
-                  className="text-2xl sm:text-3xl md:text-4xl mb-2 sm:mb-4"
-                  animate={{ y: [0, -10, 0] }}
+                  className="text-xl sm:text-2xl md:text-4xl mb-1 sm:mb-3"
+                  animate={{ y: [0, -5, 0] }}
                   transition={{
                     duration: 2,
                     repeat: Infinity,
@@ -130,7 +133,7 @@ const Stats = () => {
                 </motion.div>
 
                 {/* Number */}
-                <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-1 sm:mb-2">
+                <div className="text-xl sm:text-2xl md:text-4xl lg:text-5xl font-bold mb-0.5 sm:mb-2">
                   <AnimatedCounter
                     value={stat.value}
                     suffix={stat.suffix}
@@ -139,7 +142,7 @@ const Stats = () => {
                 </div>
 
                 {/* Label */}
-                <div className="text-gray-400 text-sm md:text-base">
+                <div className="text-gray-400 text-[10px] sm:text-xs md:text-sm lg:text-base leading-tight">
                   {stat.label}
                 </div>
 
@@ -155,18 +158,19 @@ const Stats = () => {
         {/* Marquee */}
         <motion.div
           initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : {}}
-          transition={{ delay: 0.8 }}
-          className="mt-20 overflow-hidden"
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.5 }}
+          className="mt-12 sm:mt-16 md:mt-20 overflow-hidden"
         >
           <div className="flex whitespace-nowrap">
             <motion.div
-              className="flex items-center gap-12 text-4xl md:text-6xl font-bold text-white/5"
+              className="flex items-center gap-6 sm:gap-8 md:gap-12 text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold text-white/5"
               animate={{ x: ["0%", "-50%"] }}
               transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
             >
               {[...Array(2)].map((_, i) => (
-                <div key={i} className="flex items-center gap-12">
+                <div key={i} className="flex items-center gap-6 sm:gap-8 md:gap-12">
                   <span>DIGITAL MARKETING</span>
                   <span className="text-neon-green/20">★</span>
                   <span>SEO EXPERTS</span>
